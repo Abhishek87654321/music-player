@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import AudioPlayer from 'react-h5-audio-player';
-// import 'react-h5-audio-player/lib/styles.css';
-// import 'react-h5-audio-player/src/styles.scss';
+import 'react-h5-audio-player/lib/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Song = () => {
   const [songs, setSongs] = useState([]);
@@ -19,16 +20,24 @@ const Song = () => {
   }, []);
 
   return (
-    <div>
-      {songs.map((song) => (
-        <AudioPlayer
-          autoPlay
-          key={song.id}
-          src={song.file_path}
-          onPlay={(e) => console.log('onPlay')}
-          // other props here
-        />
-      ))}
+    <div className="container mt-5">
+      <div className="row">
+        {songs.map((song) => (
+          <div className="col-md-6 mb-3" key={song.id}>
+            <Card>
+              <Card.Body>
+                <Card.Title>{song.title}</Card.Title>
+                <AudioPlayer
+                  autoPlay
+                  src={song.file_path}
+                  onPlay={(e) => console.log('onPlay')}
+                  // other props here
+                />
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
