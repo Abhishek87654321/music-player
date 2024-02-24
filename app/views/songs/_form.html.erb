@@ -1,0 +1,41 @@
+<%= form_with(model: song) do |form| %>
+  <% if song.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+        <% song.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :audio_file, style: "display: block" %>
+    <%= form.file_field :audio_file %>
+  </div>
+  <div>
+    <%= form.label :genre, style: "display: block" %>
+    <%= form.text_field :genre %>
+  </div>
+
+  <div>
+    <%= form.label :duration, style: "display: block" %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div>
+    <%= form.label :file_path, style: "display: block" %>
+    <%= form.text_field :file_path %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
